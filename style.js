@@ -45,3 +45,24 @@ function updateStudentCount() {
     const currentRows = studentTableBody.rows.length;
     totalCountEl.textContent = currentRows;
 }
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function () {
+
+    let filter = searchInput.value.toLowerCase();
+
+    let rows = document.querySelectorAll("#studentTable tr");
+
+    rows.forEach((row, index) => {
+
+        if (index === 0) return; // Header row skip
+
+        let name = row.cells[0].textContent.toLowerCase();
+
+        if (name.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
